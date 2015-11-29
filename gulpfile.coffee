@@ -118,9 +118,21 @@ gulp.task 'export-kd', ->
     .src            './node_modules/kd.js/dist/kd.css'
     .pipe gulp.dest './dist/css/'
 
+gulp.task 'export-cm', ->
+
+  # Just copy cm.css to dist
+  gulp
+    .src            [
+      './node_modules/codemirror/lib/codemirror.css',
+      './node_modules/codemirror/mode/javascript/javascript.js'
+      './node_modules/codemirror/theme/tomorrow-night-eighties.css'
+    ]
+    .pipe gulp.dest './dist/cm/'
+
 
 gulp.task 'build',   [
-  'compile-scripts', 'styles', 'entry-point', 'export-kd', 'images'
+  'compile-scripts', 'styles', 'entry-point', 'images'
+  'export-kd', 'export-cm'
 ]
 
 gulp.task 'default', [
