@@ -1,5 +1,4 @@
 # kodemirror: yet another kd.js project
--------------------------------------------
 
 ## Getting Started
 
