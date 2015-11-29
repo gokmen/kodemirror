@@ -1,10 +1,22 @@
-kd = require 'kd.js'
+kd         = require 'kd.js'
+CodeEditor = require './codeeditor'
 
 do ->
 
-  view = new kd.View
-    cssClass : 'hello-view center-all'
-    partial  : 'Hello kodemirror kd.js project!'
+  mainView = new kd.View
+  mainView.appendToDomBody()
 
-  # add it to DOM
-  view.appendToDomBody()
+  editor = new CodeEditor
+    mode     : 'javascript'
+  , content  : """
+    // Tip: Hit Cmd+Enter to run this code right now!
+
+    var foo;
+    foo = 'This is KodeMirror (kd.js) with CodeMirror!';
+
+    alert(foo);
+  """
+
+  kd.utils.defer editor.bound 'focus'
+
+  mainView.addSubView editor
